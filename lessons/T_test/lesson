@@ -1,0 +1,32 @@
+- Class: text
+  Output: "La prueba t compara medias. Tipos: 1) Una muestra, 2) Muestras independientes, 3) Muestras pareadas."
+
+- Class: text
+  Output: "Ejemplo: ¿La altura media de una planta es 15 cm? H0: μ = 15 vs H1: μ ≠ 15."
+
+- Class: command
+  Output: "Carga datos de ejemplo. Ejecuta: data(PlantGrowth)"
+  CorrectAnswer: "data(PlantGrowth)"
+  AnswerTests: any_of_exprs('data(PlantGrowth)')
+
+- Class: command
+  Output: "Inspecciona los datos: head(PlantGrowth)"
+  CorrectAnswer: "head(PlantGrowth)"
+  AnswerTests: omnitest(correctExpr='head(PlantGrowth)')
+
+- Class: figure
+  Output: "Observa la distribución: boxplot(weight ~ group, data=PlantGrowth)"
+  Figure: boxplot(weight ~ group, data=PlantGrowth, col='lightgreen')
+  FigureType: new
+
+- Class: command
+  Output: "Realiza un t-test para comparar el grupo 'ctrl' con μ=5. Usa: t.test(subset(PlantGrowth, group=='ctrl')$weight, mu=5)"
+  CorrectAnswer: "t.test(subset(PlantGrowth, group=='ctrl')$weight, mu=5)"
+  AnswerTests: any_of_exprs('t.test(subset(PlantGrowth, group==\"ctrl\")$weight, mu=5)')
+  Hint: "Usa subset() para filtrar datos."
+
+- Class: mult_question
+  Output: "Si el intervalo de confianza incluye μ0, ¿qué implica?"
+  AnswerChoices: "Rechazar H0; No rechazar H0; Error tipo II"
+  CorrectAnswer: "No rechazar H0"
+  AnswerTests: omnitest(correctVal='No rechazar H0')
