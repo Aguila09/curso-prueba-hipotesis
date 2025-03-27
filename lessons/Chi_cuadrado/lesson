@@ -1,0 +1,31 @@
+- Class: text
+  Output: "La prueba Chi-cuadrado evalúa independencia entre variables categóricas."
+
+- Class: text
+  Output: "Ejemplo: ¿El color de auto (rojo/azul) está asociado al género del comprador (hombre/mujer)?"
+
+- Class: command
+  Output: "Crea una tabla de contingencia. Ejecuta: tabla <- matrix(c(30, 10, 20, 40), nrow=2)"
+  CorrectAnswer: "tabla <- matrix(c(30, 10, 20, 40), nrow=2)"
+  AnswerTests: expr_creates_var('tabla')
+
+- Class: command
+  Output: "Añade nombres: colnames(tabla) <- c('Rojo', 'Azul'); rownames(tabla) <- c('Hombre', 'Mujer')"
+  CorrectAnswer: "colnames(tabla) <- c('Rojo', 'Azul'); rownames(tabla) <- c('Hombre', 'Mujer')"
+  AnswerTests: expr_creates_var('tabla')
+
+- Class: figure
+  Output: "Visualiza la tabla: mosaicplot(tabla, main='Relación Color-Género')"
+  Figure: mosaicplot(tabla, main='Relación Color-Género', color=TRUE)
+  FigureType: new
+
+- Class: command
+  Output: "Realiza la prueba: chisq.test(tabla)"
+  CorrectAnswer: "chisq.test(tabla)"
+  AnswerTests: any_of_exprs('chisq.test(tabla)', 'resultado_chi <- chisq.test(tabla)')
+
+- Class: mult_question
+  Output: "Si p-valor < 0.05, ¿qué concluyes?"
+  AnswerChoices: "Variables independientes; Variables asociadas; Error en los datos"
+  CorrectAnswer: "Variables asociadas"
+  AnswerTests: omnitest(correctVal='Variables asociadas')
