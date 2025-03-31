@@ -1,19 +1,18 @@
 - Class: meta
   Course: curso-prueba-hipotesis
-  Lesson: Introduccion-Ampliada
-  Author: Tu Nombre
+  Lesson: Introduccion
+  Author: Aguila09
   Type: Standard
-  Organization: TuOrganizacion
   Version: 1.2.0
 
 - Class: text
   Output: >
     Introducción a las Pruebas de Hipótesis en R
-      En esta lección amplia aprenderás en detalle sobre las pruebas de hipótesis, un procedimiento
-      estadístico que permite tomar decisiones sobre un parámetro poblacional utilizando datos muestrales.
+    En esta lección amplia aprenderás en detalle sobre las pruebas de hipótesis, un procedimiento
+    estadístico que permite tomar decisiones sobre un parámetro poblacional utilizando datos muestrales.
     
     Conceptos clave:
-
+    
     - Hipótesis nula (H0): Afirma que no existe efecto o diferencia.
     - Hipótesis alternativa (H1): Afirma que sí existe efecto o diferencia.
     
@@ -23,13 +22,13 @@
     - H1: El medicamento reduce la presión arterial.
     
     Se define un nivel de significancia (α), comúnmente 0.05, y se calcula un estadístico de prueba.
-      Si el p-valor es menor que α, se rechaza H0.
+    Si el p-valor es menor que α, se rechaza H0.
 
 - Class: text
   Output: >
     Ejemplo práctico: Prueba t para una media
-      Imagina que se quiere determinar si la presión arterial media de una muestra de 30 pacientes es
-      diferente a 120 mmHg. Se plantean las siguientes hipótesis:
+    Imagina que se quiere determinar si la presión arterial media de una muestra de 30 pacientes es
+    diferente a 120 mmHg. Se plantean las siguientes hipótesis:
     
     - H0: La media es igual a 120.
     - H1: La media es diferente a 120.
@@ -39,8 +38,8 @@
     ```r
     set.seed(123)
     presion <- rnorm(30, mean = 125, sd = 10)  Simulamos 30 valores con media 125 y sd 10
-    resultado <- t.test(presion, mu = 120)  
-    print(resultad  o)
+    resultado <- t.test(presion, mu = 120)
+    print(resultado)
     ```
     
     Este código genera una muestra, realiza la prueba t y muestra el estadístico y el p-valor.
@@ -75,8 +74,8 @@
 - Class: text
   Output: >
     Ejemplo adicional: Prueba de proporciones
-      Supón que en un estudio se afirma que el 60% de una población prefiere un cierto producto.
-      Con una muestra de 100 personas, se observó que 65 lo prefieren. Planteamos:
+    Supón que en un estudio se afirma que el 60% de una población prefiere un cierto producto.
+    Con una muestra de 100 personas, se observó que 65 lo prefieren. Planteamos:
     
     - H0: La proporción es 0.6.
     - H1: La proporción es diferente de 0.6.
@@ -120,8 +119,8 @@
 - Class: text
   Output: >
     Ejercicio práctico completo: Prueba t para medias
-      Realiza lo siguiente en R:
-
+    Realiza lo siguiente en R:
+    
     1. Simula una muestra de 50 observaciones de una distribución normal con media 100 y desviación estándar 20.
     2. Realiza una prueba t para evaluar si la media de la muestra es igual a 105.
     3. Interpreta el resultado:
@@ -154,8 +153,8 @@
 - Class: text
   Output: >
     Ejercicios adicionales interactivos en R
-
-      Ejercicio 3: Comparación de medias de dos grupos  
+    
+    Ejercicio 3: Comparación de medias de dos grupos  
     Imagina que tienes dos grupos independientes y quieres comparar sus medias. Supón que:
     
     - Grupo A: 20 observaciones simuladas con media 50 y desviación estándar 5.
