@@ -1,0 +1,64 @@
+- Class: meta
+  Course: curso-prueba-hipotesis
+  Lesson: Prueba de Proporciones
+  Author: Aguila09
+  Type: Standard
+
+- Class: text
+  Output: >
+    Bienvenido a la lección de **Prueba de Proporciones**. En esta lección aprenderás a comparar proporciones 
+    en una o dos muestras para determinar si existen diferencias significativas. Utilizaremos la función prop.test() en R y veremos cómo interpretar sus resultados.
+
+- Class: text
+  Output: >
+    **Conceptos Básicos de la Prueba de Proporciones:**  
+    Esta prueba se usa para evaluar si una proporción observada difiere de un valor teórico o para comparar las proporciones de dos grupos.  
+    - **Hipótesis nula (H0):** La proporción observada es igual a la teórica (o que ambas muestras tienen la misma proporción).  
+    - **Hipótesis alternativa (H1):** La proporción observada difiere de la teórica (o las proporciones son diferentes).
+
+- Class: text
+  Output: >
+    **Ejemplo Práctico - Una Muestra:**  
+    Supón que en una encuesta se observa que 60 de 100 encuestados prefieren un producto, y queremos saber si esta proporción difiere del 50% teórico.
+
+- Class: cmd_question
+  Output: >
+    Ejercicio 1: Prueba de proporciones para una muestra  
+    Ejecuta el siguiente comando para comparar la proporción observada (60 éxitos en 100 casos) con un 50% teórico:
+    prop.test(60, 100, p = 0.5)
+  CorrectAnswer: prop.test(60, 100, p = 0.5)
+  AnswerTests: omnitest(correctExpr="prop.test(60, 100, p = 0.5)")
+  Hint: "Utiliza prop.test(x, n, p) donde x es el número de éxitos y n el total de casos."
+
+- Class: text
+  Output: >
+    **Interpretación:**  
+    Revisa el p-valor. Si es menor que 0.05, se concluye que la proporción observada difiere significativamente del 50%.
+
+- Class: text
+  Output: >
+    **Ejemplo Adicional - Dos Muestras:**  
+    Ahora supón que en el grupo A, 70 de 120 encuestados prefieren el producto, y en el grupo B, 50 de 100 lo prefieren.  
+    Queremos evaluar si existe una diferencia significativa entre las dos proporciones.
+
+- Class: cmd_question
+  Output: >
+    Ejercicio 2: Prueba de proporciones para dos muestras  
+    Ejecuta el siguiente comando para comparar las proporciones de ambos grupos:
+    prop.test(c(70, 50), c(120, 100))
+  CorrectAnswer: prop.test(c(70, 50), c(120, 100))
+  AnswerTests: omnitest(correctExpr="prop.test(c(70, 50), c(120, 100))")
+  Hint: "Utiliza vectores en prop.test() para representar los éxitos y totales de cada grupo."
+
+- Class: mult_question
+  Output: "Si en la prueba de dos muestras el p-valor es 0.06, ¿qué conclusión tomarías?"
+  AnswerChoices: "Existe diferencia significativa en las proporciones; No existe diferencia significativa; Se requieren más datos"
+  CorrectAnswer: No existe diferencia significativa
+  AnswerTests: omnitest(correctVal="No existe diferencia significativa")
+  Hint: "El p-valor mayor que 0.05 indica que no se rechaza la hipótesis nula."
+
+- Class: text
+  Output: >
+    **Resumen y Conclusiones:**  
+    En esta lección has aprendido a utilizar la prueba de proporciones para evaluar diferencias en porcentajes, ya sea en una muestra o entre dos grupos.  
+    Recuerda interpretar el p-valor en función del nivel de significancia y practicar con distintos escenarios para reforzar los conceptos.
