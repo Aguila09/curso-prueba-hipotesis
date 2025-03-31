@@ -6,36 +6,51 @@
 
 - Class: text
   Output: >
-    Bienvenido a la lección de **ANOVA**. En esta lección aprenderás a utilizar el Análisis de Varianza (ANOVA) para comparar las medias de tres o más grupos.  
+    Bienvenido a la lección de ANOVA. En esta lección aprenderás a utilizar el Análisis de Varianza (ANOVA) para comparar las medias de tres o más grupos.  
     Verás la lógica detrás de ANOVA, cómo implementarla en R y cómo interpretar sus resultados.
 
 - Class: text
   Output: >
-    **Conceptos Básicos del ANOVA:**  
+    Conceptos Básicos del ANOVA:  
     ANOVA es una técnica que permite comparar las medias de varios grupos para determinar si al menos uno difiere significativamente.  
-    - **Hipótesis nula (H0):** Todas las medias son iguales.  
-    - **Hipótesis alternativa (H1):** Al menos una media es diferente.
+    - Hipótesis nula (H0): Todas las medias son iguales.  
+    - Hipótesis alternativa (H1): Al menos una media es diferente.
 
 - Class: text
   Output: >
-    **Ejemplo Práctico - ANOVA de una vía:**  
+    Ejemplo Práctico - ANOVA de una vía:  
     Imagina que tenemos tres grupos de pacientes sometidos a tratamientos distintos. Simularemos datos para cada grupo y 
     realizaremos un ANOVA para comparar sus medias.
 
 - Class: cmd_question
   Output: >
     Ejercicio 1: Simulación de datos para ANOVA  
-    Ejecuta los siguientes comandos para simular tres grupos con 20 observaciones cada uno:
+    Ejecuta el siguiente comando para simular el primer grupo con 20 observaciones:
     
     grupo1 <- rnorm(20, mean = 100, sd = 15)
+  CorrectAnswer: grupo1 <- rnorm(20, mean = 100, sd = 15)
+  AnswerTests: expr_creates_var("grupo1")
+  Hint: "Utiliza rnorm() para generar datos con los parámetros indicados para el grupo 1."
+
+- Class: cmd_question
+  Output: >
+    Ejercicio 2: Simulación del segundo grupo  
+    Ejecuta el siguiente comando para simular el segundo grupo con 20 observaciones:
+    
     grupo2 <- rnorm(20, mean = 110, sd = 15)
+  CorrectAnswer: grupo2 <- rnorm(20, mean = 110, sd = 15)
+  AnswerTests: expr_creates_var("grupo2")
+  Hint: "Utiliza rnorm() para generar datos con los parámetros indicados para el grupo 2."
+
+- Class: cmd_question
+  Output: >
+    Ejercicio 3: Simulación del tercer grupo  
+    Ejecuta el siguiente comando para simular el tercer grupo con 20 observaciones:
+    
     grupo3 <- rnorm(20, mean = 105, sd = 15)
-  CorrectAnswer: >
-    grupo1 <- rnorm(20, mean = 100, sd = 15)
-    grupo2 <- rnorm(20, mean = 110, sd = 15)
-    grupo3 <- rnorm(20, mean = 105, sd = 15)
-  AnswerTests: expr_creates_var("grupo1"); expr_creates_var("grupo2"); expr_creates_var("grupo3")
-  Hint: "Utiliza rnorm() para generar datos con los parámetros indicados para cada grupo."
+  CorrectAnswer: grupo3 <- rnorm(20, mean = 105, sd = 15)
+  AnswerTests: expr_creates_var("grupo3")
+  Hint: "Utiliza rnorm() para generar datos con los parámetros indicados para el grupo 3."
 
 - Class: cmd_question
   Output: >
@@ -61,7 +76,7 @@
 
 - Class: text
   Output: >
-    **Interpretación:**  
+    Interpretación:  
     Ejecuta summary(aov(valor ~ grupo, data = data)) para ver el resumen del ANOVA. Si el p-valor es menor que 0.05, 
     se rechaza H0, indicando que al menos uno de los grupos tiene una media significativamente diferente.
 
