@@ -1,7 +1,7 @@
 swirl_version: "2.5.0"
 course: "curso-prueba-hipotesis"
 lesson: "Introduccion"
-author: "Tu Nombre"
+author: "Aguila09"
 questions:
   - Class: code
     Output: |
