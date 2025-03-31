@@ -11,7 +11,7 @@
   Output: "¿Qué representa H0?"
   AnswerChoices: "La hipótesis a probar; La hipótesis de no efecto; La hipótesis alternativa"
   CorrectAnswer: "La hipótesis de no efecto"
-  AnswerTests: omnitest(correctVal='La hipótesis de no efecto')
+  AnswerTests: omnitest(correctVal="La hipótesis de no efecto")
   Hint: "H0 siempre incluye igualdad (=, ≤, ≥)."
 
 - Class: text
