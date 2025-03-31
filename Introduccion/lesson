@@ -1,4 +1,3 @@
----
 - Class: meta
   Course: curso-prueba-hipotesis
   Lesson: Introduccion-Ampliada
@@ -6,44 +5,51 @@
   Type: Standard
   Organization: TuOrganizacion
   Version: 1.2.0
+
 - Class: text
   Output: >
-    Introducción a las Pruebas de Hipótesis en R En esta lección amplia
-    aprenderás en detalle sobre las pruebas de hipótesis, un procedimiento
-    estadístico que permite tomar decisiones sobre un parámetro poblacional
-    utilizando datos muestrales.
+    Introducción a las Pruebas de Hipótesis en R
+      En esta lección amplia aprenderás en detalle sobre las pruebas de hipótesis, un procedimiento
+      estadístico que permite tomar decisiones sobre un parámetro poblacional utilizando datos muestrales.
+    
+    Conceptos clave:
 
-    Conceptos clave:|
-
-    - Hipótesis nula (H0): Afirma que no existe efecto o diferencia.|
-    - Hipótesis alternativa (H1): Afirma que sí existe efecto o diferencia.|
-
+    - Hipótesis nula (H0): Afirma que no existe efecto o diferencia.
+    - Hipótesis alternativa (H1): Afirma que sí existe efecto o diferencia.
+    
     Por ejemplo, supongamos que se desea evaluar si un medicamento afecta la presión arterial:
-
-      - H0: El medicamento no tiene efecto (la presión arterial se mantiene igual).
-      - H1: El medicamento reduce la presión arterial.
-
-      Se define un nivel de significancia (α), comúnmente 0.05, y se calcula un estadístico de prueba.
+    
+    - H0: El medicamento no tiene efecto (la presión arterial se mantiene igual).
+    - H1: El medicamento reduce la presión arterial.
+    
+    Se define un nivel de significancia (α), comúnmente 0.05, y se calcula un estadístico de prueba.
       Si el p-valor es menor que α, se rechaza H0.
+
 - Class: text
   Output: >
     Ejemplo práctico: Prueba t para una media
       Imagina que se quiere determinar si la presión arterial media de una muestra de 30 pacientes es
       diferente a 120 mmHg. Se plantean las siguientes hipótesis:
-
-    - H0: La media es igual a 120. - H1: La media es diferente a 120.
-
+    
+    - H0: La media es igual a 120.
+    - H1: La media es diferente a 120.
+    
     En R podemos simular datos y aplicar la prueba t con el siguiente código:
-
-    ```r set.seed(123) presion <- rnorm(30, mean = 125, sd = 10)  Simulamos 30 valores con media 125 y sd 10 resultado <- t.test(presion, mu = 120)   print(resultad  o) ```
-
+    
+    ```r
+    set.seed(123)
+    presion <- rnorm(30, mean = 125, sd = 10)  Simulamos 30 valores con media 125 y sd 10
+    resultado <- t.test(presion, mu = 120)  
+    print(resultad  o)
+    ```
+    
     Este código genera una muestra, realiza la prueba t y muestra el estadístico y el p-valor.
+
 - Class: cmd_question
   Output: >
-    Ejercicio 1: Simula una muestra de 40 observaciones de una distribución
-    normal con media 130 y desviación estándar 15. Realiza una prueba t para
-    evaluar si la media difiere de 125.
-
+    Ejercicio 1: Simula una muestra de 40 observaciones de una distribución normal con
+    media 130 y desviación estándar 15. Realiza una prueba t para evaluar si la media difiere de 125.
+    
     Escribe el código en R:
   CorrectAnswer: |
     set.seed(456)
@@ -54,37 +60,43 @@
     expr_creates_var("muestra")
     expr_creates_var("resultado")
   Hint: >
-    Recuerda que `rnorm(n, mean, sd)` genera números aleatorios de una
-    distribución normal y `t.test(x, mu = valor)` realiza la prueba t comparando
-    la media de x con el valor indicado.
+    Recuerda que `rnorm(n, mean, sd)` genera números aleatorios de una distribución normal y
+    `t.test(x, mu = valor)` realiza la prueba t comparando la media de x con el valor indicado.
+
 - Class: mult_question
   Output: >
-    En el ejemplo anterior, si el p-valor resulta ser 0.04 y el nivel de
-    significancia es 0.05, ¿qué decisión se toma?
+    En el ejemplo anterior, si el p-valor resulta ser 0.04 y el nivel de significancia es 0.05, ¿qué decisión se toma?
   AnswerChoices: Rechazar H0; No rechazar H0; No se puede determinar sin más información
   CorrectAnswer: Rechazar H0
   AnswerTests: omnitest(correctVal="Rechazar H0")
-  Hint: |
+  Hint: >
     Un p-valor menor que α (0.05) indica que se rechaza la hipótesis nula.
+
 - Class: text
   Output: >
     Ejemplo adicional: Prueba de proporciones
       Supón que en un estudio se afirma que el 60% de una población prefiere un cierto producto.
       Con una muestra de 100 personas, se observó que 65 lo prefieren. Planteamos:
-
-    - H0: La proporción es 0.6. - H1: La proporción es diferente de 0.6.
-
+    
+    - H0: La proporción es 0.6.
+    - H1: La proporción es diferente de 0.6.
+    
     En R, podemos evaluar esta hipótesis con `prop.test`:
-
-    ```r exitos <- 65 n <- 100 prop_test <- prop.test(exitos, n, p = 0.6) print(prop_test) ```
-
+    
+    ```r
+    exitos <- 65
+    n <- 100
+    prop_test <- prop.test(exitos, n, p = 0.6)
+    print(prop_test)
+    ```
+    
     El resultado muestra un p-valor para decidir si la proporción observada difiere significativamente de 0.6.
+
 - Class: cmd_question
   Output: >
-    Ejercicio 2: Realiza una prueba de proporciones para verificar si la
-    proporción de éxitos es diferente de 0.7, considerando que en una muestra de
-    150 personas se obtuvieron 110 éxitos.
-
+    Ejercicio 2: Realiza una prueba de proporciones para verificar si la proporción de éxitos es
+    diferente de 0.7, considerando que en una muestra de 150 personas se obtuvieron 110 éxitos.
+    
     Escribe el código en R:
   CorrectAnswer: |
     exitos <- 110
@@ -94,31 +106,33 @@
   AnswerTests: |
     expr_creates_var("resultado_prop")
   Hint: >
-    Utiliza `prop.test(x, n, p)` donde x es el número de éxitos y n es el
-    tamaño de la muestra.
+    Utiliza `prop.test(x, n, p)` donde x es el número de éxitos y n es el tamaño de la muestra.
+
 - Class: mult_question
   Output: >
-    Si en la prueba de proporciones el p-valor resulta ser 0.08 y α es 0.05,
-    ¿qué conclusión se obtiene?
+    Si en la prueba de proporciones el p-valor resulta ser 0.08 y α es 0.05, ¿qué conclusión se obtiene?
   AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
   CorrectAnswer: No rechazar H0
   AnswerTests: omnitest(correctVal="No rechazar H0")
-  Hint: |
+  Hint: >
     Un p-valor mayor que α implica que no se rechaza la hipótesis nula.
+
 - Class: text
   Output: >
     Ejercicio práctico completo: Prueba t para medias
       Realiza lo siguiente en R:
 
-    1. Simula una muestra de 50 observaciones de una distribución normal con media 100 y desviación estándar 20. 2. Realiza una prueba t para evaluar si la media de la muestra es igual a 105. 3. Interpreta el resultado:
+    1. Simula una muestra de 50 observaciones de una distribución normal con media 100 y desviación estándar 20.
+    2. Realiza una prueba t para evaluar si la media de la muestra es igual a 105.
+    3. Interpreta el resultado:
        - Si el p-valor es menor a 0.05, ¿qué decisión se toma?
        - Si el p-valor es mayor o igual a 0.05, ¿qué decisión se toma?
-
+    
     Anota tu interpretación en tus apuntes.
+    
 - Class: cmd_question
   Output: >
-    Escribe el código para simular la muestra y realizar la prueba t
-    descrita en el ejercicio anterior.
+    Escribe el código para simular la muestra y realizar la prueba t descrita en el ejercicio anterior.
   CorrectAnswer: |
     set.seed(789)
     muestra <- rnorm(50, mean = 100, sd = 20)
@@ -127,41 +141,52 @@
   AnswerTests: |
     expr_creates_var("muestra")
     expr_creates_var("resultado")
-  Hint: |
+  Hint: >
     Usa `set.seed()`, `rnorm()` y `t.test()` para la simulación y el análisis.
+
 - Class: text
   Output: >
     Interpretación del ejercicio:
+    
+    - Si el p-valor < 0.05, se rechaza H0, lo que indica que la media de la muestra es significativamente diferente a 105.
+    - Si el p-valor ≥ 0.05, no se rechaza H0, lo que indica que no hay evidencia suficiente para concluir que la media difiere de 105.
 
-    - Si el p-valor < 0.05, se rechaza H0, lo que indica que la media de la muestra es significativamente diferente a 105. - Si el p-valor ≥ 0.05, no se rechaza H0, lo que indica que no hay evidencia suficiente para concluir que la media difiere de 105.
 - Class: text
   Output: >
     Ejercicios adicionales interactivos en R
 
       Ejercicio 3: Comparación de medias de dos grupos  
     Imagina que tienes dos grupos independientes y quieres comparar sus medias. Supón que:
-
-    - Grupo A: 20 observaciones simuladas con media 50 y desviación estándar 5. - Grupo B: 20 observaciones simuladas con media 55 y desviación estándar 5.
-
+    
+    - Grupo A: 20 observaciones simuladas con media 50 y desviación estándar 5.
+    - Grupo B: 20 observaciones simuladas con media 55 y desviación estándar 5.
+    
     Plantea las hipótesis:
-
-    - H0: La media de A es igual a la media de B. - H1: La media de A es diferente a la media de B.
-
+    
+    - H0: La media de A es igual a la media de B.
+    - H1: La media de A es diferente a la media de B.
+    
     Realiza una prueba t para muestras independientes en R utilizando `t.test()`.
-
-    Ejercicio 4: Evaluación de varianzas   En R, utiliza la función `var.test()` para comparar las varianzas de dos grupos. Simula dos grupos:
-
-    - Grupo X: 30 observaciones con varianza 10. - Grupo Y: 30 observaciones con varianza 15.
-
+    
+    Ejercicio 4: Evaluación de varianzas  
+    En R, utiliza la función `var.test()` para comparar las varianzas de dos grupos. Simula dos grupos:
+    
+    - Grupo X: 30 observaciones con varianza 10.
+    - Grupo Y: 30 observaciones con varianza 15.
+    
     Plantea la hipótesis de que las varianzas son iguales y ejecuta la prueba.
-
+    
     Escribe los comandos necesarios para ambos ejercicios y analiza los resultados.
+
 - Class: text
   Output: >
     Resumen de la lección ampliada:
-
-    - Las pruebas de hipótesis permiten evaluar afirmaciones sobre parámetros poblacionales utilizando datos muestrales. - Se formulan dos hipótesis: H0 (sin efecto) y H1 (con efecto). - Se utiliza un nivel de significancia (α), comúnmente 0.05, para tomar decisiones basadas en el p-valor. - Los ejemplos prácticos incluyen pruebas t para una media, pruebas de proporciones,
+    
+    - Las pruebas de hipótesis permiten evaluar afirmaciones sobre parámetros poblacionales utilizando datos muestrales.
+    - Se formulan dos hipótesis: H0 (sin efecto) y H1 (con efecto).
+    - Se utiliza un nivel de significancia (α), comúnmente 0.05, para tomar decisiones basadas en el p-valor.
+    - Los ejemplos prácticos incluyen pruebas t para una media, pruebas de proporciones,
       y comparaciones de medias y varianzas.
     - La simulación de datos en R facilita el entendimiento de los conceptos y la interpretación de resultados.
-
+    
     ¡Practica estos ejercicios en R para fortalecer tu comprensión de las pruebas de hipótesis y su aplicación en análisis de datos!
