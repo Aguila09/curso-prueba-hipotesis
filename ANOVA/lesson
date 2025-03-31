@@ -1,0 +1,77 @@
+- Class: meta
+  Course: curso-prueba-hipotesis
+  Lesson: ANOVA
+  Author: Aguila09
+  Type: Standard
+
+- Class: text
+  Output: >
+    Bienvenido a la lección de **ANOVA**. En esta lección aprenderás a utilizar el Análisis de Varianza (ANOVA) para comparar las medias de tres o más grupos.  
+    Verás la lógica detrás de ANOVA, cómo implementarla en R y cómo interpretar sus resultados.
+
+- Class: text
+  Output: >
+    **Conceptos Básicos del ANOVA:**  
+    ANOVA es una técnica que permite comparar las medias de varios grupos para determinar si al menos uno difiere significativamente.  
+    - **Hipótesis nula (H0):** Todas las medias son iguales.  
+    - **Hipótesis alternativa (H1):** Al menos una media es diferente.
+
+- Class: text
+  Output: >
+    **Ejemplo Práctico - ANOVA de una vía:**  
+    Imagina que tenemos tres grupos de pacientes sometidos a tratamientos distintos. Simularemos datos para cada grupo y 
+    realizaremos un ANOVA para comparar sus medias.
+
+- Class: cmd_question
+  Output: >
+    Ejercicio 1: Simulación de datos para ANOVA  
+    Ejecuta los siguientes comandos para simular tres grupos con 20 observaciones cada uno:
+    
+    grupo1 <- rnorm(20, mean = 100, sd = 15)
+    grupo2 <- rnorm(20, mean = 110, sd = 15)
+    grupo3 <- rnorm(20, mean = 105, sd = 15)
+  CorrectAnswer: >
+    grupo1 <- rnorm(20, mean = 100, sd = 15)
+    grupo2 <- rnorm(20, mean = 110, sd = 15)
+    grupo3 <- rnorm(20, mean = 105, sd = 15)
+  AnswerTests: expr_creates_var("grupo1"); expr_creates_var("grupo2"); expr_creates_var("grupo3")
+  Hint: "Utiliza rnorm() para generar datos con los parámetros indicados para cada grupo."
+
+- Class: cmd_question
+  Output: >
+    Combina los tres grupos en un único data frame para el análisis. Escribe el comando en R:
+    data <- data.frame(
+      valor = c(grupo1, grupo2, grupo3),
+      grupo = factor(rep(c("Grupo1", "Grupo2", "Grupo3"), each = 20))
+    )
+  CorrectAnswer: >
+    data <- data.frame(
+      valor = c(grupo1, grupo2, grupo3),
+      grupo = factor(rep(c("Grupo1", "Grupo2", "Grupo3"), each = 20))
+    )
+  AnswerTests: expr_creates_var("data")
+  Hint: "Combina los datos y utiliza factor() para definir el grupo correspondiente a cada observación."
+
+- Class: cmd_question
+  Output: >
+    Ahora, realiza el ANOVA utilizando la función aov(). Escribe el comando en R.
+  CorrectAnswer: aov(valor ~ grupo, data = data)
+  AnswerTests: omnitest(correctExpr="aov(valor ~ grupo, data = data)")
+  Hint: "Utiliza aov() especificando la fórmula y el data frame."
+
+- Class: text
+  Output: >
+    **Interpretación:**  
+    Ejecuta summary(aov(valor ~ grupo, data = data)) para ver el resumen del ANOVA. Si el p-valor es menor que 0.05, 
+    se rechaza H0, indicando que al menos uno de los grupos tiene una media significativamente diferente.
+
+- Class: mult_question
+  Output: "Si el p-valor del ANOVA es 0.01, ¿qué conclusión sacas?"
+  AnswerChoices: "Existe diferencia significativa entre los grupos; No existe diferencia significativa; Se requiere más análisis"
+  CorrectAnswer: Existe diferencia significativa entre los grupos
+  AnswerTests: omnitest(correctVal="Existe diferencia significativa entre los grupos")
+  Hint: "El p-valor menor que 0.05 indica diferencias entre las medias de al menos uno de los grupos."
+
+- Class: text
+  Output: >
+    Esto concluye la lección de ANOVA. Experimenta variando parámetros y tamaños de muestra para profundizar en la interpretación.
