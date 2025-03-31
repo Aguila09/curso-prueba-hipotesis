@@ -65,14 +65,22 @@
   Output: >
     Ejercicio 2: Simulación de datos para dos grupos  
     Ejecuta los siguientes comandos para simular dos grupos de pacientes. El grupo A tiene una media de 120 y el grupo B de 115, 
-    ambos con una desviación estándar de 10, y cada grupo tiene 30 pacientes.
+    ambos con una desviación estándar de 10, y cada grupo tiene 30 pacientes. Primero el del grupo A
     
     grupo_A <- rnorm(30, mean = 120, sd = 10)
     grupo_B <- rnorm(30, mean = 115, sd = 10)
   CorrectAnswer: >
     grupo_A <- rnorm(30, mean = 120, sd = 10)
+  AnswerTests: expr_creates_var("grupo_A")
+  Hint: "Utiliza rnorm() para generar 30 datos para cada grupo, especificando las medias correspondientes."
+
+Output: >
+    Ahora crea el del grupo B
+
     grupo_B <- rnorm(30, mean = 115, sd = 10)
-  AnswerTests: expr_creates_var("grupo_A"); expr_creates_var("grupo_B")
+  CorrectAnswer: >
+    grupo_B <- rnorm(30, mean = 115, sd = 10)
+  AnswerTests: expr_creates_var("grupo_B")
   Hint: "Utiliza rnorm() para generar 30 datos para cada grupo, especificando las medias correspondientes."
 
 - Class: cmd_question
