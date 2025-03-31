@@ -1,3 +1,4 @@
+---
 - Class: meta
   Course: curso-prueba-hipotesis
   Lesson: Introduccion
@@ -5,46 +6,66 @@
   Type: Standard
   Version: 2.2.15
 
-- Class: code
-  Output: |
-    # Verifica si oldcourse no existe o está vacía y la inicializa a FALSE
-    if (!exists("oldcourse") || length(oldcourse) == 0) {
-      oldcourse <- FALSE
-    }
-    
-    if (oldcourse) {
-      print("El curso es antiguo.")
-    } else {
-      print("El curso es nuevo.")
-    }
-
 - Class: text
-  Output: "Bienvenido a las pruebas de hipótesis. Aprenderás a tomar decisiones basadas en datos."
-
+  Output: "Pruebas de Hipótesis: Toma decisiones basadas en datos En esta lección
+    aprenderás: 1. Cómo plantear hipótesis estadísticas 2. Interpretar
+    resultados clave (p-valor, significancia) 3. Tomar decisiones con base en
+    evidencia empírica"
+- Class: figure
+  Output: "Visualización conceptual del proceso:"
+  Figure: plot(0, 0, type='n', xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="")
+    text(0.5, 0.8, "Hipótesis\nNula (H0)", col="red", cex=1.5) text(0.5, 0.2,
+    "Hipótesis\nAlternativa (H1)", col="blue", cex=1.5)
+  FigureType: new
 - Class: text
-  Output: "Una prueba de hipótesis evalúa dos afirmaciones: la hipótesis nula (H0) y la alternativa (H1)."
-
-- Class: text
-  Output: "Ejemplo: Un medicamento afirma reducir la presión arterial. H0: 'No hay efecto' vs H1: 'Sí hay efecto'."
-
+  Output: "Ejemplo 1: Un laboratorio afirma que sus píldoras reducen la fiebre en
+    2°C en 1 hora. - H0: Reducción promedio = 2°C - H1: Reducción promedio ≠
+    2°C"
 - Class: mult_question
-  Output: "¿Qué representa H0?"
-  AnswerChoices: La hipótesis a probar; La hipótesis de no efecto; La hipótesis alternativa
-  CorrectAnswer: La hipótesis de no efecto
-  AnswerTests: omnitest(correctVal="La hipótesis de no efecto")
-  Hint: "H0 siempre incluye igualdad (=, ≤, ≥)."
-
+  Output: ¿Cuál característica define a H0?
+  AnswerChoices: Siempre incluye igualdad; Es lo que queremos probar; Representa un cambio
+  CorrectAnswer: Siempre incluye igualdad
+  AnswerTests: omnitest(correctVal="Siempre incluye igualdad")
+  Hint: "Recuerda: H0 es el status quo."
 - Class: text
-  Output: "Pasos: 1) Definir H0 y H1, 2) Elegir nivel de significancia (α), 3) Calcular estadístico de prueba, 4) Tomar decisión."
-
+  Output: "Proceso en 4 pasos: 1. Formular hipótesis: H0 vs H1 2. Fijar nivel de
+    significancia (α = 0.05 común) 3. Calcular estadístico de prueba y p-valor
+    4. Concluir: Rechazar H0 si p-valor < α"
 - Class: cmd_question
-  Output: "Simula un experimento con moneda justa. Ejecuta: lanzamientos <- rbinom(50, 1, 0.5)"
-  CorrectAnswer: lanzamientos <- rbinom(50, 1, 0.5)
-  AnswerTests: expr_creates_var("lanzamientos")
-  Hint: "rbinom(n, intentos, probabilidad)."
-
+  Output: "Simula 100 lanzamientos de moneda JUSTA (prob = 0.5): lanzamientos <-
+    rbinom(n = 100, size = 1, prob = 0.5)"
+  CorrectAnswer: lanzamientos <- rbinom(100, 1, 0.5)
+  AnswerTests: expr_creates_var("lanzamientos") &&
+    omnitest(correctExpr="rbinom(100, 1, 0.5)")
+  Hint: n=100, size=1 (cara/escudo), prob=0.5
+- Class: cmd_question
+  Output: "Calcula la proporción de caras: prop_caras <- mean(lanzamientos)"
+  CorrectAnswer: prop_caras <- mean(lanzamientos)
+  AnswerTests: expr_creates_var("prop_caras")
+  Hint: Usa mean() sobre el vector lanzamientos
 - Class: mult_question
-  Output: "Si α = 0.05 y el p-valor es 0.03, ¿qué decisión tomas?"
-  AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
+  Output: Si obtenemos p-valor = 0.04 con α = 0.05, ¿qué hacemos?
+  AnswerChoices: Rechazar H0; No rechazar H0; Pedir más datos
   CorrectAnswer: Rechazar H0
   AnswerTests: omnitest(correctVal="Rechazar H0")
+  Hint: Compara p-valor con α
+- Class: text
+  Output: "📊 **Ejemplo Real**: Usemos datos de coches (mtcars). ¿El consumo
+    promedio (mpg) es diferente de 20 mpg?"
+- Class: cmd_question
+  Output: "Calcula la media muestral: media_mpg <- mean(mtcars$mpg)"
+  CorrectAnswer: media_mpg <- mean(mtcars$mpg)
+  AnswerTests: expr_creates_var("media_mpg") && omnitest(correctExpr="mean(mtcars$mpg)")
+- Class: cmd_question
+  Output: "Realiza el t-test: test_resultado <- t.test(mtcars$mpg, mu = 20)"
+  CorrectAnswer: test_resultado <- t.test(mtcars$mpg, mu = 20)
+  AnswerTests: expr_creates_var("test_resultado")
+- Class: text
+  Output: "Interpretación: - p-valor < 0.05: Evidencia contra H0 - Intervalo de
+    confianza: Rango plausible para el parámetro - Estadístico t: Medida de
+    diferencia estandarizada"
+- Class: mult_question
+  Output: Si el intervalo de confianza 95% incluye 20, ¿qué implica?
+  AnswerChoices: No rechazar H0; Rechazar H0; Error de medición
+  CorrectAnswer: No rechazar H0
+  AnswerTests: omnitest(correctVal="No rechazar H0")
