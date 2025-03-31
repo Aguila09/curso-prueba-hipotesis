@@ -1,5 +1,22 @@
+---
+# Código de inicialización para evitar el error “argumento tiene longitud cero”
+code: |
+  # Verifica si oldcourse no existe o está vacía y la inicializa a FALSE
+  if (!exists("oldcourse") || length(oldcourse) == 0) {
+    oldcourse <- FALSE
+  }
+  
+  if (oldcourse) {
+    # Código para el caso en que oldcourse sea TRUE
+    print("El curso es antiguo.")
+  } else {
+    # Código para el caso en que oldcourse sea FALSE
+    print("El curso es nuevo.")
+  }
+---
+
 - Class: text
-  Output: "Bienvenido a las pruebas de hipótesis Aprenderás a tomar decisiones basadas en datos."
+  Output: "Bienvenido a las pruebas de hipótesis. Aprenderás a tomar decisiones basadas en datos."
 
 - Class: text
   Output: "Una prueba de hipótesis evalúa dos afirmaciones: la hipótesis nula (H0) y la alternativa (H1)."
@@ -9,9 +26,12 @@
 
 - Class: mult_question
   Output: "¿Qué representa H0?"
-  AnswerChoices: "La hipótesis a probar; La hipótesis de no efecto; La hipótesis alternativa"
+  AnswerChoices: 
+    - "La hipótesis a probar"
+    - "La hipótesis de no efecto"
+    - "La hipótesis alternativa"
   CorrectAnswer: "La hipótesis de no efecto"
-  AnswerTests: omnitest(correctVal="La hipótesis de no efecto")
+  AnswerTests: "omnitest(correctVal='La hipótesis de no efecto')"
   Hint: "H0 siempre incluye igualdad (=, ≤, ≥)."
 
 - Class: text
@@ -20,11 +40,14 @@
 - Class: command
   Output: "Simula un experimento con moneda justa. Ejecuta: lanzamientos <- rbinom(50, 1, 0.5)"
   CorrectAnswer: "lanzamientos <- rbinom(50, 1, 0.5)"
-  AnswerTests: expr_creates_var('lanzamientos')
+  AnswerTests: "expr_creates_var('lanzamientos')"
   Hint: "rbinom(n, intentos, probabilidad)."
 
 - Class: mult_question
   Output: "Si α = 0.05 y el p-valor es 0.03, ¿qué decisión tomas?"
-  AnswerChoices: "Rechazar H0; No rechazar H0; Aceptar H1"
+  AnswerChoices: 
+    - "Rechazar H0"
+    - "No rechazar H0"
+    - "Aceptar H1"
   CorrectAnswer: "Rechazar H0"
-  AnswerTests: omnitest(correctVal='Rechazar H0')
+  AnswerTests: "omnitest(correctVal='Rechazar H0')"
