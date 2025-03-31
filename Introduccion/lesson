@@ -2,69 +2,108 @@
 - Class: meta
   Course: curso-prueba-hipotesis
   Lesson: Introduccion
-  Author: Aguila09
+  Author: Tu Nombre
   Type: Standard
-  Version: 2.2.15
+  Organization: TuOrganizacion
+  Version: 1.1.0
 - Class: text
-  Output: "Pruebas de Hipótesis: Toma decisiones basadas en datos En esta lección
-    aprenderás: 1. Cómo plantear hipótesis estadísticas 2. Interpretar
-    resultados clave (p-valor, significancia) 3. Tomar decisiones con base en
-    evidencia empírica"
-- Class: figure
-  Output: "Visualización conceptual del proceso:"
-  Figure: plot(0, 0, type='n', xlim=c(0,1), ylim=c(0,1), axes=F, xlab="", ylab="")
-    text(0.5, 0.8, "Hipótesis\nNula (H0)", col="red", cex=1.5) text(0.5, 0.2,
-    "Hipótesis\nAlternativa (H1)", col="blue", cex=1.5)
-  FigureType: new
+  Output: >
+    En esta lección aprenderás sobre las pruebas de hipótesis, una
+    herramienta fundamental en estadística para tomar decisiones basadas en
+    datos. Una prueba de hipótesis consiste en evaluar dos afirmaciones opuestas
+    sobre un parámetro poblacional: - **Hipótesis nula (H0):** Afirma que no hay
+    efecto o diferencia. - **Hipótesis alternativa (H1):** Afirma que sí hay
+    efecto o diferencia.
+
+    La idea es asumir H0 como cierta y usar datos muestrales para determinar si hay suficiente evidencia para rechazarla a favor de H1.
 - Class: text
-  Output: "Ejemplo 1: Un laboratorio afirma que sus píldoras reducen la fiebre en
-    2°C en 1 hora. - H0: Reducción promedio = 2°C - H1: Reducción promedio ≠
-    2°C"
+  Output: >
+    Por ejemplo, supongamos que se afirma que un nuevo medicamento no tiene
+    efecto sobre la presión arterial. La hipótesis nula sería: "El medicamento
+    no tiene efecto" (H0), y la alternativa: "El medicamento reduce la presión
+    arterial" (H1). Al recolectar datos de un experimento clínico, se analiza si
+    existe evidencia suficiente para rechazar H0.
 - Class: mult_question
-  Output: ¿Cuál característica define a H0?
-  AnswerChoices: Siempre incluye igualdad; Es lo que queremos probar; Representa un cambio
-  CorrectAnswer: Siempre incluye igualdad
-  AnswerTests: omnitest(correctVal="Siempre incluye igualdad")
-  Hint: "Recuerda: H0 es el status quo."
+  Output: |
+    ¿Qué representa la hipótesis nula (H0) en una prueba de hipótesis?
+  AnswerChoices: La hipótesis a probar; La hipótesis de no efecto; La hipótesis alternativa
+  CorrectAnswer: La hipótesis de no efecto
+  AnswerTests: omnitest(correctVal="La hipótesis de no efecto")
+  Hint: >
+    Recuerda que H0 generalmente postula que no existe un efecto o diferencia
+    en el parámetro estudiado.
 - Class: text
-  Output: "Proceso en 4 pasos: 1. Formular hipótesis: H0 vs H1 2. Fijar nivel de
-    significancia (α = 0.05 común) 3. Calcular estadístico de prueba y p-valor
-    4. Concluir: Rechazar H0 si p-valor < α"
+  Output: >
+    **Pasos para realizar una prueba de hipótesis:**
+
+    1. **Definir las hipótesis:**  
+       - H0: Hipótesis nula (sin efecto o diferencia).  
+       - H1: Hipótesis alternativa (con efecto o diferencia).
+
+       
+    2. **Elegir el nivel de significancia (α):**  
+       Un valor común es 0.05, que define el umbral para rechazar H0.
+
+       
+    3. **Calcular el estadístico de prueba:**  
+       Dependiendo del tipo de prueba (t-test, chi-cuadrado, etc.), se calcula un valor que
+       se compara con una distribución teórica.
+
+       
+    4. **Tomar la decisión:**  
+       Si el p-valor es menor que α, se rechaza H0; de lo contrario, no se rechaza H0.
+- Class: text
+  Output: >
+    **Ejemplo adicional:**
+
+    Imagina que quieres saber si la media de una muestra difiere de un valor conocido. Planteas: - H0: La media es igual al valor conocido. - H1: La media es diferente al valor conocido.
+
+    Se calcula un estadístico t a partir de la muestra y se obtiene un p-valor. Si el p-valor es, por ejemplo, 0.02 y α es 0.05, rechazarás H0 y concluirás que la media de la muestra es significativamente diferente del valor conocido.
 - Class: cmd_question
-  Output: "Simula 100 lanzamientos de moneda JUSTA (prob = 0.5): lanzamientos <-
-    rbinom(n = 100, size = 1, prob = 0.5)"
-  CorrectAnswer: lanzamientos <- rbinom(100, 1, 0.5)
-  AnswerTests: expr_creates_var("lanzamientos") &&
-    omnitest(correctExpr="rbinom(100, 1, 0.5)")
-  Hint: n=100, size=1 (cara/escudo), prob=0.5
-- Class: cmd_question
-  Output: "Calcula la proporción de caras: prop_caras <- mean(lanzamientos)"
-  CorrectAnswer: prop_caras <- mean(lanzamientos)
-  AnswerTests: expr_creates_var("prop_caras")
-  Hint: Usa mean() sobre el vector lanzamientos
+  Output: >
+    Como ejercicio práctico, simula un experimento donde se lanza una moneda
+    justa 50 veces. Escribe el comando en R para generar una secuencia de
+    resultados (0 para cara y 1 para cruz): Ejecuta:
+
+    lanzamientos <- rbinom(50, 1, 0.5)
+  CorrectAnswer: lanzamientos <- rbinom(50, 1, 0.5)
+  AnswerTests: expr_creates_var("lanzamientos")
+  Hint: >
+    La función `rbinom(n, size, prob)` genera números aleatorios de una
+    distribución binomial. En este caso, `n = 50`, `size = 1` (un lanzamiento) y
+    `prob = 0.5` para una moneda justa.
 - Class: mult_question
-  Output: Si obtenemos p-valor = 0.04 con α = 0.05, ¿qué hacemos?
-  AnswerChoices: Rechazar H0; No rechazar H0; Pedir más datos
+  Output: >
+    Si en un experimento el nivel de significancia es α = 0.05 y se obtiene
+    un p-valor de 0.03, ¿qué decisión tomarías?
+  AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
   CorrectAnswer: Rechazar H0
   AnswerTests: omnitest(correctVal="Rechazar H0")
-  Hint: Compara p-valor con α
+  Hint: >
+    Recuerda que si el p-valor es menor que α, se rechaza la hipótesis nula (H0).
 - Class: text
-  Output: "Ejemplo Real: Usemos datos de coches (mtcars). ¿El consumo promedio
-    (mpg) es diferente de 20 mpg?"
-- Class: cmd_question
-  Output: "Calcula la media muestral: media_mpg <- mean(mtcars$mpg)"
-  CorrectAnswer: media_mpg <- mean(mtcars$mpg)
-  AnswerTests: expr_creates_var("media_mpg") && omnitest(correctExpr="mean(mtcars$mpg)")
-- Class: cmd_question
-  Output: "Realiza el t-test: test_resultado <- t.test(mtcars$mpg, mu = 20)"
-  CorrectAnswer: test_resultado <- t.test(mtcars$mpg, mu = 20)
-  AnswerTests: expr_creates_var("test_resultado")
+  Output: >
+    **Ejercicios adicionales:**
+
+    1. **Ejercicio 1: Comparación de medias**  
+       Supón que tienes dos muestras independientes de un mismo tratamiento, y deseas comparar sus
+       medias. Plantea las hipótesis y menciona qué prueba estadística podrías utilizar para evaluar
+       si existe una diferencia significativa.
+
+       
+    2. **Ejercicio 2: Prueba de proporciones**  
+       Imagina que en un estudio se afirma que el 60% de una población prefiere cierto producto.
+       Con una muestra, se obtiene que el 65% lo prefiere. ¿Cómo plantearías las hipótesis para
+       evaluar si este cambio es significativo? ¿Qué prueba usarías?
+
+       
+    Responde estos ejercicios en tus apuntes o en la consola de R para practicar la formulación de hipótesis y la selección de pruebas estadísticas.
 - Class: text
-  Output: "Interpretación: - p-valor < 0.05: Evidencia contra H0 - Intervalo de
-    confianza: Rango plausible para el parámetro - Estadístico t: Medida de
-    diferencia estandarizada"
-- Class: mult_question
-  Output: Si el intervalo de confianza 95% incluye 20, ¿qué implica?
-  AnswerChoices: No rechazar H0; Rechazar H0; Error de medición
-  CorrectAnswer: No rechazar H0
-  AnswerTests: omnitest(correctVal="No rechazar H0")
+  Output: >
+    **Resumen de la lección:**
+
+    - Las pruebas de hipótesis son esenciales para tomar decisiones informadas basadas en datos. - Se establecen dos hipótesis opuestas: la nula (H0) y la alternativa (H1). - Se sigue un proceso de 4 pasos: definir hipótesis, seleccionar un nivel de significancia,
+      calcular el estadístico y tomar una decisión.
+    - La práctica con ejemplos y ejercicios ayuda a interiorizar estos conceptos.
+
+    ¡Continúa practicando y explorando más métodos estadísticos para fortalecer tu análisis de datos!
