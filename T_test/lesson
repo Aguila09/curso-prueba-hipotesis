@@ -12,15 +12,15 @@
 
 - Class: text
   Output: >
-    **Conceptos Básicos del T-test:**  
-    La prueba t es un método estadístico que se utiliza para comparar la media de una o dos muestras con un valor 
-    teórico o entre sí. Se utiliza para determinar si las diferencias observadas son estadísticamente significativas.  
-    - **T-test de una muestra:** Compara la media de una muestra con un valor fijo (por ejemplo, una media teórica).  
-    - **T-test de dos muestras independientes:** Compara las medias de dos grupos independientes para ver si difieren significativamente.
+    Conceptos Básicos del T-test:  
+    La prueba t es un método estadístico utilizado para comparar la media de una o dos muestras con un valor 
+    teórico o entre sí. Se emplea para determinar si las diferencias observadas son estadísticamente significativas.  
+    - T-test de una muestra: Compara la media de una muestra con un valor fijo (por ejemplo, una media teórica).  
+    - T-test de dos muestras independientes: Compara las medias de dos grupos independientes para ver si difieren significativamente.
 
 - Class: text
   Output: >
-    **Ejemplo Práctico - T-test de una muestra:**  
+    Ejemplo Práctico - T-test de una muestra:  
     Supón que queremos evaluar si la presión arterial media de un grupo de pacientes difiere de 120.  
     - H0: La media de la presión arterial es igual a 120.  
     - H1: La media de la presión arterial es diferente de 120.
@@ -30,10 +30,11 @@
     Ejercicio 1: Simulación de datos para un T-test de una muestra  
     Ejecuta el siguiente comando para simular datos de presión arterial en 30 pacientes, con una media de 120 
     y una desviación estándar de 10:
+    
     datos <- rnorm(30, mean = 120, sd = 10)
   CorrectAnswer: datos <- rnorm(30, mean = 120, sd = 10)
   AnswerTests: expr_creates_var("datos")
-  Hint: "Utiliza la función rnorm(n, mean, sd) para generar 30 datos."
+  Hint: "Utiliza rnorm(30, mean, sd) para generar 30 datos."
 
 - Class: cmd_question
   Output: >
@@ -44,44 +45,29 @@
 
 - Class: text
   Output: >
-    **Interpretación de la Prueba T de una Muestra:**  
-    Una vez que ejecutes la prueba, revisa el p-valor en la salida. Si el p-valor es menor que 0.05, rechaza la hipótesis nula, 
-    indicando que la media observada difiere significativamente de 120. Si es mayor, no se puede rechazar H0.
-
-- Class: mult_question
-  Output: "Si en la prueba t de una muestra el p-valor obtenido es 0.04 y α es 0.05, ¿qué decisión tomarías?"
-  AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
-  CorrectAnswer: Rechazar H0
-  AnswerTests: omnitest(correctVal="Rechazar H0")
-  Hint: "El p-valor es menor que α, por lo tanto se rechaza la hipótesis nula."
-
-- Class: text
-  Output: >
-    **Ejemplo Adicional - T-test para dos muestras independientes:**  
+    Ejemplo Práctico - T-test para dos muestras independientes:  
     Ahora supongamos que queremos comparar la presión arterial entre dos grupos de pacientes: uno que recibió un tratamiento 
-    y otro que no. En este caso, la prueba t para muestras independientes evaluará si existe una diferencia significativa entre las medias de ambos grupos.
+    y otro que no. Para ello, simularemos datos para dos grupos.
     
 - Class: cmd_question
   Output: >
-    Ejercicio 2: Simulación de datos para dos grupos  
-    Ejecuta los siguientes comandos para simular dos grupos de pacientes. El grupo A tiene una media de 120 y el grupo B de 115, 
-    ambos con una desviación estándar de 10, y cada grupo tiene 30 pacientes. Primero el del grupo A
+    Ejercicio 2.1: Simulación de datos para el Grupo A  
+    Ejecuta el siguiente comando para generar 30 datos para el Grupo A con una media de 120 y una desviación estándar de 10:
     
     grupo_A <- rnorm(30, mean = 120, sd = 10)
-    grupo_B <- rnorm(30, mean = 115, sd = 10)
-  CorrectAnswer: >
-    grupo_A <- rnorm(30, mean = 120, sd = 10)
+  CorrectAnswer: grupo_A <- rnorm(30, mean = 120, sd = 10)
   AnswerTests: expr_creates_var("grupo_A")
-  Hint: "Utiliza rnorm() para generar 30 datos para cada grupo, especificando las medias correspondientes."
+  Hint: "Utiliza rnorm(30, mean = 120, sd = 10) para generar 30 datos para el Grupo A."
 
-Output: >
-    Ahora crea el del grupo B
-
+- Class: cmd_question
+  Output: >
+    Ejercicio 2.2: Simulación de datos para el Grupo B  
+    Ejecuta el siguiente comando para generar 30 datos para el Grupo B con una media de 115 y una desviación estándar de 10:
+    
     grupo_B <- rnorm(30, mean = 115, sd = 10)
-  CorrectAnswer: >
-    grupo_B <- rnorm(30, mean = 115, sd = 10)
+  CorrectAnswer: grupo_B <- rnorm(30, mean = 115, sd = 10)
   AnswerTests: expr_creates_var("grupo_B")
-  Hint: "Utiliza rnorm() para generar 30 datos para cada grupo, especificando las medias correspondientes."
+  Hint: "Utiliza rnorm(30, mean = 115, sd = 10) para generar 30 datos para el Grupo B."
 
 - Class: cmd_question
   Output: >
@@ -92,7 +78,7 @@ Output: >
 
 - Class: text
   Output: >
-    **Interpretación de la Prueba T para Dos Muestras:**  
+    Interpretación de la Prueba T para Dos Muestras:  
     Una vez ejecutada la prueba, observa el p-valor. Si este es menor que 0.05, se concluye que existe una diferencia significativa 
     entre las medias de grupo_A y grupo_B. De lo contrario, no se rechaza la hipótesis nula de igualdad de medias.
 
@@ -105,7 +91,7 @@ Output: >
 
 - Class: text
   Output: >
-    **Resumen y Conclusiones:**  
+    Resumen y Conclusiones:  
     En esta lección has aprendido a:
     - Simular datos para una prueba t de una muestra y para dos muestras independientes.
     - Realizar la prueba t en R utilizando la función t.test().
