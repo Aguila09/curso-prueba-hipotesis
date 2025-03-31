@@ -1,47 +1,50 @@
-swirl_version: "2.5.0"
-course: "curso-prueba-hipotesis"
-lesson: "Introduccion"
-author: "Aguila09"
-questions:
-  - Class: code
-    Output: |
-      # Verifica si oldcourse no existe o está vacía y la inicializa a FALSE
-      if (!exists("oldcourse") || length(oldcourse) == 0) {
-        oldcourse <- FALSE
-      }
-      
-      if (oldcourse) {
-        print("El curso es antiguo.")
-      } else {
-        print("El curso es nuevo.")
-      }
-  - Class: text
-    Output: "Bienvenido a las pruebas de hipótesis. Aprenderás a tomar decisiones basadas en datos."
-  - Class: text
-    Output: "Una prueba de hipótesis evalúa dos afirmaciones: la hipótesis nula (H0) y la alternativa (H1)."
-  - Class: text
-    Output: "Ejemplo: Un medicamento afirma reducir la presión arterial. H0: 'No hay efecto' vs H1: 'Sí hay efecto'."
-  - Class: mult_question
-    Output: "¿Qué representa H0?"
-    AnswerChoices:
-      - "La hipótesis a probar"
-      - "La hipótesis de no efecto"
-      - "La hipótesis alternativa"
-    CorrectAnswer: "La hipótesis de no efecto"
-    AnswerTests: "omnitest(correctVal='La hipótesis de no efecto')"
-    Hint: "H0 siempre incluye igualdad (=, ≤, ≥)."
-  - Class: text
-    Output: "Pasos: 1) Definir H0 y H1, 2) Elegir nivel de significancia (α), 3) Calcular estadístico de prueba, 4) Tomar decisión."
-  - Class: command
-    Output: "Simula un experimento con moneda justa. Ejecuta: lanzamientos <- rbinom(50, 1, 0.5)"
-    CorrectAnswer: "lanzamientos <- rbinom(50, 1, 0.5)"
-    AnswerTests: "expr_creates_var('lanzamientos')"
-    Hint: "rbinom(n, intentos, probabilidad)."
-  - Class: mult_question
-    Output: "Si α = 0.05 y el p-valor es 0.03, ¿qué decisión tomas?"
-    AnswerChoices:
-      - "Rechazar H0"
-      - "No rechazar H0"
-      - "Aceptar H1"
-    CorrectAnswer: "Rechazar H0"
-    AnswerTests: "omnitest(correctVal='Rechazar H0')"
+- Class: meta
+  Course: curso-prueba-hipotesis
+  Lesson: Introduccion
+  Author: Aguila09
+  Type: Standard
+  Version: 2.2.15
+
+- Class: code
+  Output: |
+    # Verifica si oldcourse no existe o está vacía y la inicializa a FALSE
+    if (!exists("oldcourse") || length(oldcourse) == 0) {
+      oldcourse <- FALSE
+    }
+    
+    if (oldcourse) {
+      print("El curso es antiguo.")
+    } else {
+      print("El curso es nuevo.")
+    }
+
+- Class: text
+  Output: "Bienvenido a las pruebas de hipótesis. Aprenderás a tomar decisiones basadas en datos."
+
+- Class: text
+  Output: "Una prueba de hipótesis evalúa dos afirmaciones: la hipótesis nula (H0) y la alternativa (H1)."
+
+- Class: text
+  Output: "Ejemplo: Un medicamento afirma reducir la presión arterial. H0: 'No hay efecto' vs H1: 'Sí hay efecto'."
+
+- Class: mult_question
+  Output: "¿Qué representa H0?"
+  AnswerChoices: La hipótesis a probar; La hipótesis de no efecto; La hipótesis alternativa
+  CorrectAnswer: La hipótesis de no efecto
+  AnswerTests: omnitest(correctVal="La hipótesis de no efecto")
+  Hint: "H0 siempre incluye igualdad (=, ≤, ≥)."
+
+- Class: text
+  Output: "Pasos: 1) Definir H0 y H1, 2) Elegir nivel de significancia (α), 3) Calcular estadístico de prueba, 4) Tomar decisión."
+
+- Class: cmd_question
+  Output: "Simula un experimento con moneda justa. Ejecuta: lanzamientos <- rbinom(50, 1, 0.5)"
+  CorrectAnswer: lanzamientos <- rbinom(50, 1, 0.5)
+  AnswerTests: expr_creates_var("lanzamientos")
+  Hint: "rbinom(n, intentos, probabilidad)."
+
+- Class: mult_question
+  Output: "Si α = 0.05 y el p-valor es 0.03, ¿qué decisión tomas?"
+  AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
+  CorrectAnswer: Rechazar H0
+  AnswerTests: omnitest(correctVal="Rechazar H0")
