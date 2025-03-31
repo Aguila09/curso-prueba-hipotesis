@@ -6,19 +6,19 @@
 
 - Class: text
   Output: >
-    Bienvenido a la lección de **Prueba de Proporciones**. En esta lección aprenderás a comparar proporciones 
+    Bienvenido a la lección de Prueba de Proporciones. En esta lección aprenderás a comparar proporciones 
     en una o dos muestras para determinar si existen diferencias significativas. Utilizaremos la función prop.test() en R y veremos cómo interpretar sus resultados.
 
 - Class: text
   Output: >
-    **Conceptos Básicos de la Prueba de Proporciones:**  
+    Conceptos Básicos de la Prueba de Proporciones:  
     Esta prueba se usa para evaluar si una proporción observada difiere de un valor teórico o para comparar las proporciones de dos grupos.  
-    - **Hipótesis nula (H0):** La proporción observada es igual a la teórica (o que ambas muestras tienen la misma proporción).  
-    - **Hipótesis alternativa (H1):** La proporción observada difiere de la teórica (o las proporciones son diferentes).
+    - Hipótesis nula (H0): La proporción observada es igual a la teórica (o que ambas muestras tienen la misma proporción).  
+    - Hipótesis alternativa (H1): La proporción observada difiere de la teórica (o las proporciones son diferentes).
 
 - Class: text
   Output: >
-    **Ejemplo Práctico - Una Muestra:**  
+    Ejemplo Práctico - Una Muestra:  
     Supón que en una encuesta se observa que 60 de 100 encuestados prefieren un producto, y queremos saber si esta proporción difiere del 50% teórico.
 
 - Class: cmd_question
@@ -32,12 +32,12 @@
 
 - Class: text
   Output: >
-    **Interpretación:**  
+    Interpretación:  
     Revisa el p-valor. Si es menor que 0.05, se concluye que la proporción observada difiere significativamente del 50%.
 
 - Class: text
   Output: >
-    **Ejemplo Adicional - Dos Muestras:**  
+    Ejemplo Adicional - Dos Muestras:  
     Ahora supón que en el grupo A, 70 de 120 encuestados prefieren el producto, y en el grupo B, 50 de 100 lo prefieren.  
     Queremos evaluar si existe una diferencia significativa entre las dos proporciones.
 
@@ -59,6 +59,6 @@
 
 - Class: text
   Output: >
-    **Resumen y Conclusiones:**  
+    Resumen y Conclusiones:  
     En esta lección has aprendido a utilizar la prueba de proporciones para evaluar diferencias en porcentajes, ya sea en una muestra o entre dos grupos.  
     Recuerda interpretar el p-valor en función del nivel de significancia y practicar con distintos escenarios para reforzar los conceptos.
