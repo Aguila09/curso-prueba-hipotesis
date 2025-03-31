@@ -5,7 +5,6 @@
   Author: Aguila09
   Type: Standard
   Version: 2.2.15
-
 - Class: text
   Output: "Pruebas de Hipótesis: Toma decisiones basadas en datos En esta lección
     aprenderás: 1. Cómo plantear hipótesis estadísticas 2. Interpretar
@@ -50,8 +49,8 @@
   AnswerTests: omnitest(correctVal="Rechazar H0")
   Hint: Compara p-valor con α
 - Class: text
-  Output: "📊 **Ejemplo Real**: Usemos datos de coches (mtcars). ¿El consumo
-    promedio (mpg) es diferente de 20 mpg?"
+  Output: "Ejemplo Real: Usemos datos de coches (mtcars). ¿El consumo promedio
+    (mpg) es diferente de 20 mpg?"
 - Class: cmd_question
   Output: "Calcula la media muestral: media_mpg <- mean(mtcars$mpg)"
   CorrectAnswer: media_mpg <- mean(mtcars$mpg)
