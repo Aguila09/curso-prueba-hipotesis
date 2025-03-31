@@ -1,23 +1,9 @@
 - Class: meta
   Course: curso-prueba-hipotesis
   Lesson: Introduccion
-  Author: Tu Nombre
+  Author: Aguila09
   Type: Standard
-  Organization: TuOrganizacion
   Version: 1.0.1
-
-- Class: code
-  Output: |
-    Inicializamos la variable oldcourse para evitar errores de longitud en condiciones
-    if (!exists("oldcourse") || length(oldcourse) == 0) {
-      oldcourse <- FALSE
-    }
-    
-    if (oldcourse) {
-      print("El curso es antiguo.")
-    } else {
-      print("El curso es nuevo.")
-    }
 
 - Class: text
   Output: >
@@ -129,14 +115,6 @@
   Output: >
     Con estos ejemplos y ejercicios, has visto cómo simular datos, realizar pruebas de hipótesis en R y tomar decisiones basadas en 
     los resultados. Recuerda siempre interpretar el p-valor en el contexto de tu nivel de significancia y el problema que estás analizando.
-
-- Class: mult_question
-  Output: >
-    ¿Te sientes más cómodo ahora con el proceso de una prueba de hipótesis?
-  AnswerChoices: Sí;No;Necesito más ejemplos
-  CorrectAnswer: Sí
-  AnswerTests: omnitest(correctVal="Sí")
-  Hint: "Piensa en los pasos y ejemplos que hemos visto para responder."
 
 - Class: text
   Output: >
