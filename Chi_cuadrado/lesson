@@ -1,31 +1,56 @@
-- Class: text
-  Output: "La prueba Chi-cuadrado evalúa independencia entre variables categóricas."
+- Class: meta
+  Course: curso-prueba-hipotesis
+  Lesson: Chi-cuadrado
+  Author: Aguila09
+  Type: Standard
 
 - Class: text
-  Output: "Ejemplo: ¿El color de auto (rojo/azul) está asociado al género del comprador (hombre/mujer)?"
+  Output: >
+    Bienvenido a la lección de **Chi-cuadrado**. En esta lección aprenderás a utilizar la prueba de chi-cuadrado 
+    para evaluar la asociación entre variables categóricas. Verás cuándo es adecuada, cómo implementarla en R y cómo interpretar sus resultados.
 
-- Class: command
-  Output: "Crea una tabla de contingencia. Ejecuta: tabla <- matrix(c(30, 10, 20, 40), nrow=2)"
-  CorrectAnswer: "tabla <- matrix(c(30, 10, 20, 40), nrow=2)"
-  AnswerTests: expr_creates_var('tabla')
+- Class: text
+  Output: >
+    **Conceptos Básicos del Chi-cuadrado:**  
+    La prueba de chi-cuadrado se utiliza para determinar si existe una asociación significativa entre dos variables categóricas.  
+    - **Hipótesis nula (H0):** No existe asociación entre las variables.  
+    - **Hipótesis alternativa (H1):** Existe una asociación significativa.
 
-- Class: command
-  Output: "Añade nombres: colnames(tabla) <- c('Rojo', 'Azul'); rownames(tabla) <- c('Hombre', 'Mujer')"
-  CorrectAnswer: "colnames(tabla) <- c('Rojo', 'Azul'); rownames(tabla) <- c('Hombre', 'Mujer')"
-  AnswerTests: expr_creates_var('tabla')
+- Class: text
+  Output: >
+    **Ejemplo Práctico - Tabla de Contingencia:**  
+    Imagina que queremos evaluar la relación entre el género (Masculino/Femenino) y la preferencia por un producto (Sí/No).  
+    Para ello, crearemos una tabla de contingencia y aplicaremos la prueba chi-cuadrado.
 
-- Class: figure
-  Output: "Visualiza la tabla: mosaicplot(tabla, main='Relación Color-Género')"
-  Figure: mosaicplot(tabla, main='Relación Color-Género', color=TRUE)
-  FigureType: new
+- Class: cmd_question
+  Output: >
+    Ejercicio 1: Simulación de una tabla de contingencia  
+    Ejecuta el siguiente comando para crear una tabla de contingencia simulada:
+    tabla <- matrix(c(30, 20, 25, 25), nrow = 2, byrow = TRUE)
+  CorrectAnswer: tabla <- matrix(c(30, 20, 25, 25), nrow = 2, byrow = TRUE)
+  AnswerTests: expr_creates_var("tabla")
+  Hint: "Utiliza la función matrix() para crear una matriz con los datos proporcionados."
 
-- Class: command
-  Output: "Realiza la prueba: chisq.test(tabla)"
-  CorrectAnswer: "chisq.test(tabla)"
-  AnswerTests: any_of_exprs('chisq.test(tabla)', 'resultado_chi <- chisq.test(tabla)')
+- Class: cmd_question
+  Output: >
+    Ahora, realiza la prueba chi-cuadrado sobre la tabla creada. Escribe el comando en R.
+  CorrectAnswer: chisq.test(tabla)
+  AnswerTests: omnitest(correctExpr="chisq.test(tabla)")
+  Hint: "Utiliza la función chisq.test() para aplicar la prueba."
+
+- Class: text
+  Output: >
+    **Interpretación:**  
+    Revisa el p-valor en la salida de la prueba. Si el p-valor es menor que 0.05, se concluye que existe una asociación significativa entre las variables.
 
 - Class: mult_question
-  Output: "Si p-valor < 0.05, ¿qué concluyes?"
-  AnswerChoices: "Variables independientes; Variables asociadas; Error en los datos"
-  CorrectAnswer: "Variables asociadas"
-  AnswerTests: omnitest(correctVal='Variables asociadas')
+  Output: "Si el p-valor obtenido es 0.02, ¿qué decisión tomarías?"
+  AnswerChoices: "Rechazar H0; No rechazar H0; No se puede determinar"
+  CorrectAnswer: Rechazar H0
+  AnswerTests: omnitest(correctVal="Rechazar H0")
+  Hint: "El p-valor menor que 0.05 indica que se rechaza la hipótesis nula."
+
+- Class: text
+  Output: >
+    Esto concluye la lección de Chi-cuadrado. Te recomendamos experimentar con diferentes tablas de contingencia y 
+    practicar la interpretación de los resultados.
