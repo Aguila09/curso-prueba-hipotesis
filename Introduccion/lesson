@@ -13,10 +13,10 @@
     estadístico que permite tomar decisiones sobre un parámetro poblacional
     utilizando datos muestrales.
 
-    Conceptos clave:\n
+    Conceptos clave:|
 
-    - Hipótesis nula (H0): Afirma que no existe efecto o diferencia.\n 
-    - Hipótesis alternativa (H1): Afirma que sí existe efecto o diferencia.\n
+    - Hipótesis nula (H0): Afirma que no existe efecto o diferencia.|
+    - Hipótesis alternativa (H1): Afirma que sí existe efecto o diferencia.|
 
     Por ejemplo, supongamos que se desea evaluar si un medicamento afecta la presión arterial:
 
