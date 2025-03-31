@@ -1,32 +1,112 @@
-- Class: text
-  Output: "La prueba t compara medias. Tipos: 1) Una muestra, 2) Muestras independientes, 3) Muestras pareadas."
+- Class: meta
+  Course: curso-prueba-hipotesis
+  Lesson: T-test
+  Author: Aguila09
+  Type: Standard
 
 - Class: text
-  Output: "Ejemplo: ¿La altura media de una planta es 15 cm? H0: μ = 15 vs H1: μ ≠ 15."
+  Output: >
+    Bienvenido a la lección de T-test. En esta lección aprenderás qué es una prueba t, cuándo utilizarla y 
+    cómo interpretarla en R. Veremos tanto la prueba t de una muestra como la de dos muestras independientes, 
+    con varios ejemplos y ejercicios prácticos.
 
-- Class: command
-  Output: "Carga datos de ejemplo. Ejecuta: data(PlantGrowth)"
-  CorrectAnswer: "data(PlantGrowth)"
-  AnswerTests: any_of_exprs('data(PlantGrowth)')
+- Class: text
+  Output: >
+    **Conceptos Básicos del T-test:**  
+    La prueba t es un método estadístico que se utiliza para comparar la media de una o dos muestras con un valor 
+    teórico o entre sí. Se utiliza para determinar si las diferencias observadas son estadísticamente significativas.  
+    - **T-test de una muestra:** Compara la media de una muestra con un valor fijo (por ejemplo, una media teórica).  
+    - **T-test de dos muestras independientes:** Compara las medias de dos grupos independientes para ver si difieren significativamente.
 
-- Class: command
-  Output: "Inspecciona los datos: head(PlantGrowth)"
-  CorrectAnswer: "head(PlantGrowth)"
-  AnswerTests: omnitest(correctExpr='head(PlantGrowth)')
+- Class: text
+  Output: >
+    **Ejemplo Práctico - T-test de una muestra:**  
+    Supón que queremos evaluar si la presión arterial media de un grupo de pacientes difiere de 120.  
+    - H0: La media de la presión arterial es igual a 120.  
+    - H1: La media de la presión arterial es diferente de 120.
 
-- Class: figure
-  Output: "Observa la distribución: boxplot(weight ~ group, data=PlantGrowth)"
-  Figure: boxplot(weight ~ group, data=PlantGrowth, col='lightgreen')
-  FigureType: new
+- Class: cmd_question
+  Output: >
+    Ejercicio 1: Simulación de datos para un T-test de una muestra  
+    Ejecuta el siguiente comando para simular datos de presión arterial en 30 pacientes, con una media de 120 
+    y una desviación estándar de 10:
+    datos <- rnorm(30, mean = 120, sd = 10)
+  CorrectAnswer: datos <- rnorm(30, mean = 120, sd = 10)
+  AnswerTests: expr_creates_var("datos")
+  Hint: "Utiliza la función rnorm(n, mean, sd) para generar 30 datos."
 
-- Class: command
-  Output: "Realiza un t-test para comparar el grupo 'ctrl' con μ=5. Usa: t.test(subset(PlantGrowth, group=='ctrl')$weight, mu=5)"
-  CorrectAnswer: "t.test(subset(PlantGrowth, group=='ctrl')$weight, mu=5)"
-  AnswerTests: any_of_exprs('t.test(subset(PlantGrowth, group==\"ctrl\")$weight, mu=5)')
-  Hint: "Usa subset() para filtrar datos."
+- Class: cmd_question
+  Output: >
+    Ahora, realiza una prueba t de una muestra para comparar la media de 'datos' con 120. Escribe el comando en R.
+  CorrectAnswer: t.test(datos, mu = 120)
+  AnswerTests: omnitest(correctExpr="t.test(datos, mu = 120)")
+  Hint: "Utiliza la función t.test() y especifica mu = 120 para la hipótesis nula."
+
+- Class: text
+  Output: >
+    **Interpretación de la Prueba T de una Muestra:**  
+    Una vez que ejecutes la prueba, revisa el p-valor en la salida. Si el p-valor es menor que 0.05, rechaza la hipótesis nula, 
+    indicando que la media observada difiere significativamente de 120. Si es mayor, no se puede rechazar H0.
 
 - Class: mult_question
-  Output: "Si el intervalo de confianza incluye μ0, ¿qué implica?"
-  AnswerChoices: "Rechazar H0; No rechazar H0; Error tipo II"
-  CorrectAnswer: "No rechazar H0"
-  AnswerTests: omnitest(correctVal='No rechazar H0')
+  Output: "Si en la prueba t de una muestra el p-valor obtenido es 0.04 y α es 0.05, ¿qué decisión tomarías?"
+  AnswerChoices: Rechazar H0; No rechazar H0; Aceptar H1
+  CorrectAnswer: Rechazar H0
+  AnswerTests: omnitest(correctVal="Rechazar H0")
+  Hint: "El p-valor es menor que α, por lo tanto se rechaza la hipótesis nula."
+
+- Class: text
+  Output: >
+    **Ejemplo Adicional - T-test para dos muestras independientes:**  
+    Ahora supongamos que queremos comparar la presión arterial entre dos grupos de pacientes: uno que recibió un tratamiento 
+    y otro que no. En este caso, la prueba t para muestras independientes evaluará si existe una diferencia significativa entre las medias de ambos grupos.
+    
+- Class: cmd_question
+  Output: >
+    Ejercicio 2: Simulación de datos para dos grupos  
+    Ejecuta los siguientes comandos para simular dos grupos de pacientes. El grupo A tiene una media de 120 y el grupo B de 115, 
+    ambos con una desviación estándar de 10, y cada grupo tiene 30 pacientes.
+    
+    grupo_A <- rnorm(30, mean = 120, sd = 10)
+    grupo_B <- rnorm(30, mean = 115, sd = 10)
+  CorrectAnswer: >
+    grupo_A <- rnorm(30, mean = 120, sd = 10)
+    grupo_B <- rnorm(30, mean = 115, sd = 10)
+  AnswerTests: expr_creates_var("grupo_A"); expr_creates_var("grupo_B")
+  Hint: "Utiliza rnorm() para generar 30 datos para cada grupo, especificando las medias correspondientes."
+
+- Class: cmd_question
+  Output: >
+    Ahora, realiza una prueba t para comparar las medias de grupo_A y grupo_B. Escribe el comando en R.
+  CorrectAnswer: t.test(grupo_A, grupo_B)
+  AnswerTests: omnitest(correctExpr="t.test(grupo_A, grupo_B)")
+  Hint: "Utiliza t.test() pasando los dos vectores como argumentos para comparar ambos grupos."
+
+- Class: text
+  Output: >
+    **Interpretación de la Prueba T para Dos Muestras:**  
+    Una vez ejecutada la prueba, observa el p-valor. Si este es menor que 0.05, se concluye que existe una diferencia significativa 
+    entre las medias de grupo_A y grupo_B. De lo contrario, no se rechaza la hipótesis nula de igualdad de medias.
+
+- Class: mult_question
+  Output: "Si en la prueba t para dos muestras el p-valor es 0.08 y α es 0.05, ¿qué conclusión sacas?"
+  AnswerChoices: "Existe diferencia significativa; No existe diferencia significativa; La muestra es muy pequeña"
+  CorrectAnswer: No existe diferencia significativa
+  AnswerTests: omnitest(correctVal="No existe diferencia significativa")
+  Hint: "El p-valor es mayor que α, por lo tanto no se rechaza H0."
+
+- Class: text
+  Output: >
+    **Resumen y Conclusiones:**  
+    En esta lección has aprendido a:
+    - Simular datos para una prueba t de una muestra y para dos muestras independientes.
+    - Realizar la prueba t en R utilizando la función t.test().
+    - Interpretar el p-valor para tomar decisiones sobre la hipótesis nula.
+    
+    Te recomendamos experimentar modificando los parámetros (media, desviación estándar, tamaño de muestra) y practicar 
+    la interpretación de los resultados para afianzar estos conceptos.
+
+- Class: text
+  Output: >
+    Esto concluye la lección de T-test. Revisa cada uno de los ejercicios en la consola de R, prueba nuevos escenarios y, sobre todo, 
+    practica para dominar el uso del T-test en el análisis estadístico.
